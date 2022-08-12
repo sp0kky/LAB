@@ -5,6 +5,19 @@
   hosts: all
   gather_facts: false
   tasks:
-  - name: Example assertion
+  - name: package facts
+    package_facts:
+      manager: auto
+  -name: service facts
+    service_facts:
+  - name: assert
     ansible.builtin.assert:
-      that: true
+      that:
+        - "'haproxy' in ansible_facts.packages"
+        - "'haproxy.service' in ansible_facts.services"
+        - "ansible_facts.services['haproxy.service']['state'] == 'running'"
+  - name: check service haproxy is running
+    shell: pkill -0 haproxy
+    register: hapid
+    changed_when: false
+    failed_when: hapid.rc != 0
