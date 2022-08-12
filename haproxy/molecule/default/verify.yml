@@ -21,3 +21,8 @@
     register: hapid
     changed_when: false
     failed_when: hapid.rc != 0
+  - name: check haproxy user
+    shell: grep user /etc/haproxy/haproxy.cfg |awk '{print $2}'
+    register: hauser
+    changed_when: hauser.stdout == "admin"
+    failed_when: hauser.stdout != "admin"
