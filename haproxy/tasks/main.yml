@@ -1,0 +1,15 @@
+---
+# tasks file for haproxy
+- name: Install haproxy
+  ansible.builtin.package:
+    name: haproxy
+    state: present
+  become: true
+
+- name: Change default user
+  lineinfile:
+    dest: "/etc/haproxy/haproxy.cfg"
+    regexp: "user haproxy"
+    line: "user dxc-admin"
+    state: present
+  become: true

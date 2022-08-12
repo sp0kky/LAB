@@ -1,0 +1,20 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: delegated
+platforms:
+  - name: web
+provisioner:
+  name: ansible
+  config_options:
+    defaults:
+      vault_password_file: "${MOLECULE_SCENARIO_DIRECTORY}/vault.pw"
+  inventory:
+    host_vars:
+      web:
+        ansible_host: 10.0.0.4
+        ansible_user: azureuser
+        ansible_connection: ssh
+verifier:
+  name: ansible
