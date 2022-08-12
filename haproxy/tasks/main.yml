@@ -7,9 +7,8 @@
   become: true
 
 - name: Change default user
-  lineinfile:
-    dest: "/etc/haproxy/haproxy.cfg"
-    regexp: "user haproxy"
-    line: "user dxc-admin"
-    state: present
+  ansible.builtin.replace:
+    path: '/etc/haproxy/haproxy.cfg'
+    regexp: '(\s+)user(\s+)haproxy'
+    replace: '\1user dxc-admin\2'
   become: true
