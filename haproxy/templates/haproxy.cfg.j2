@@ -35,11 +35,12 @@ defaults
 
 {% for frontend in services %}
         frontend {{frontend.fe_name}}
-            bind {{frontend.fe_name.fe_vip}}:{{frontend.fe_name.fe_port}}
+        {% for fe in services.fe_name %}
+            bind {{fe.fe_vip}}:{{fe.fe_port}}
             mode http
-            default_backend {{frontend.be_name}}_backend
-
-        backend {{frontend.be_name}}_backend
+            default_backend {{fe.be_name}}_backend
+        {% endfor %}
+        backend {{fe.be_name}}_backend
             mode http
 {% for backend in frontend.backends %}
             server {{backend.name}} {{backend.host}}:{{backend.port}} maxconn 250
