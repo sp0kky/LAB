@@ -35,7 +35,7 @@ defaults
 
 {% for frontend in services %}
         frontend {{frontend.name}}
-            bind {{frontend.ip}}:{{frontend.port}}
+            bind {{frontend.vip}}:{{frontend.port}}
             mode http
             default_backend {{frontend.name}}_backend
 
