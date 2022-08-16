@@ -32,19 +32,17 @@ defaults
         errorfile 502 /etc/haproxy/errors/502.http
         errorfile 503 /etc/haproxy/errors/503.http
         errorfile 504 /etc/haproxy/errors/504.http
-
-{% for colour in colours %}
-        Colour number {{ loop.index }} is {{ colour.name }}.
-      {% set colour_count = 0 %}
-      {% for person in people if person.fav_colour == colour.name %}
-      {% set colour_count = colour_count + 1 %}
-      {% endfor %}
-        Currently {{ colour_count }} people call {{ colour.name }} their favourite.
-        And the following are examples of things that are {{ colour.name }}:
-      {% for item in colour.things %}
-          - {{ item }}
-          {% endfor %}
-      {% endfor %}
+        {% for frontend in services_fe %}
+        frontend {{frontend.fe_name}}
+                bind 80
+                mode http
+                default_backend {{frontend.be_name}}
+        {% for backend in services_be %}
+        backend {{backend.be_name}}_backend
+                mode http
+                server {{backend.be_name}} {{backend.be_host}}:{{backend.be_port}} maxconn 250
+        {% endfor %}
+        {% endfor %}
       
 
 

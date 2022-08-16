@@ -1,36 +1,21 @@
 ---
 # defaults file for haproxy
   remote_install_path: /etc/haproxy
-  people:
-    - name: Mike
-      fav_colour: Blue
-    - name: Kyle
-      fav_colour: Yellow
-    - name: Shea
-      fav_colour: Blue
-    - name: Aly
-      fav_colour: Yellow
-    - name: Daniyal
-      fav_colour: Yellow
-    - name: Tim
-      fav_colour: Orange
-
-  colours:
+  services_fe:
     - name: Blue
-      things:
-        - Sky
-        - Sea
-        - Jeans
+      fe_name: Blue_fe
+      be_name: Blue_be
     - name: Yellow
-      things:
-        - Egg yolk
-        - Taxi
-        - Banana
-        - Lemon
-        - Sun
-    - name: Orange
-      things:
-        - Pumpkin
-        - Basketball
-        - Carrots
-        - Oranges
+      fe_name: Yellow_fe
+      be_name: Yellow_be
+
+  services_be:
+    - name: Blue
+      be_name: Blue_be
+      be_host: blue_be
+      be_port: 80
+    - name: Yellow
+      be_name: Yellow_be
+      be_host: Yellow_be
+      be_port: 80
+    
