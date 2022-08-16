@@ -12,7 +12,8 @@
   services_be:
     - name: Blue
       be_name: Blue_be
-      be_host: blue_be
+      be_host: 
+        - Blue_be1
       be_port: 80
     - name: Yellow
       be_name: Yellow_be
