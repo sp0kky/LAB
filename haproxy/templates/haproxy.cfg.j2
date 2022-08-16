@@ -33,14 +33,15 @@ defaults
         errorfile 503 /etc/haproxy/errors/503.http
         errorfile 504 /etc/haproxy/errors/504.http
         {% for frontend in services_fe %}
-        frontend {{frontend.fe_name}}
-                bind 80
-                mode http
-                default_backend {{frontend.be_name}}
+
+frontend {{frontend.fe_name}}
+        bind 80
+        mode http
+        default_backend {{frontend.be_name}}
         {% for backend in services_be %}
-        backend {{backend.be_name}}_backend
-                mode http
-                server {{backend.be_name}} {{backend.be_host}}:{{backend.be_port}} maxconn 250
+backend {{backend.be_name}}_backend
+        mode http
+        server {{backend.be_name}} {{backend.be_host}}:{{backend.be_port}} maxconn 250
         {% endfor %}
         {% endfor %}
       
