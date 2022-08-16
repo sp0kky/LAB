@@ -1,2 +1,3 @@
 ---
 # vars file for haproxy
+remote_install_path: /etc/haproxy

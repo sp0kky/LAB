@@ -6,6 +6,11 @@
     state: present
   become: true
 
+- name: Add haproxy.cfg
+  ansible.builtin.template:
+    src: haproxy.cfg.j2
+    dest: '{{ remote_install_path }}/haproxy.cfg'
+
 - name: Change default user
   ansible.builtin.replace:
     path: '/etc/haproxy/haproxy.cfg'
