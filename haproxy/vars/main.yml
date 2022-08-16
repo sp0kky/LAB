@@ -3,8 +3,12 @@
 # remote_install_path: /etc/haproxy
 services:
   fe_name: 
-    - fe-app1
-    - fe-app2
+    fe-app1:
+      fe_vip: 10.0.0.10
+      fe_port: 80
+    fe-app2:
+      fe_vip: 10.0.0.11
+      fe_port: 80
 
   
 
