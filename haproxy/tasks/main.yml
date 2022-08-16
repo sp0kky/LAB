@@ -8,7 +8,7 @@
 
 - name: debug variable
   ansible.builtin.debug:
-    var: remote_install_path
+    var: fe_name
 - name: Add haproxy.cfg
   ansible.builtin.template:
     src: haproxy.cfg.j2
