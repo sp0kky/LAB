@@ -39,7 +39,7 @@ frontend {{frontend.fe_name}}
         default_backend {{frontend.be_name}}_backend
 {% endfor %}
 
-{% for backend in services_be %}
+{%+ for backend in services_be +%}
 backend {{backend.be_name}}_backend
         mode http
         {% for i in backend.be_host %}
