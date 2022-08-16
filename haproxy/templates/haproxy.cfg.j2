@@ -33,14 +33,18 @@ defaults
         errorfile 503 /etc/haproxy/errors/503.http
         errorfile 504 /etc/haproxy/errors/504.http
 
-{% for frontend in services %}
-frontend {{frontend.fe_name}}
-        bind 80
-        mode http
-        default_backend {{frontend.be_name}}
+{% for colour in colours %}
+        Colour number {{ loop.index }} is {{ colour.name }}.
+      {% set colour_count = 0 %}
+      {% for person in people if person.fav_colour == colour.name %}
+      {% set colour_count = colour_count + 1 %}
+      {% endfor %}
+        Currently {{ colour_count }} people call {{ colour.name }} their favourite.
+        And the following are examples of things that are {{ colour.name }}:
+      {% for item in colour.things %}
+          - {{ item }}
+          {% endfor %}
+      {% endfor %}
+      
 
-backend {{frontend.be_name}}_backend
-        mode http
-        server {{backend_name}} {{backend_host}}:{{backend_port}} maxconn 250
-{% endfor %}
- 
+

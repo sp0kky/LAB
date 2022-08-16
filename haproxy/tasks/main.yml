@@ -1,10 +1,10 @@
 ---
 # tasks file for haproxy
-#- name: Install haproxy
-#  ansible.builtin.package:
-#    name: haproxy
-#    state: present
-#  become: true
+- name: Install haproxy
+  ansible.builtin.package:
+    name: haproxy
+    state: present
+  become: true
 
 - name: debug variable
   ansible.builtin.debug:
