@@ -45,6 +45,6 @@ defaults
 {% for backend in frontend.backends %}
             server {{backend.name}} {{backend.host}}:{{backend.port}} maxconn 250
 {% endfor %}
-
+#}
 {% endfor %}
-#}      
+ 
