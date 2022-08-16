@@ -40,11 +40,11 @@ defaults
             mode http
             default_backend {{fe.be_name}}_backend
         {% endfor %}
-        backend {{fe.be_name}}_backend
+{#        backend {{fe.be_name}}_backend
             mode http
 {% for backend in frontend.backends %}
             server {{backend.name}} {{backend.host}}:{{backend.port}} maxconn 250
 {% endfor %}
 
 {% endfor %}
-        
+#}      
