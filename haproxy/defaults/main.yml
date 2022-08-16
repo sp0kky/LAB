@@ -1,5 +1,6 @@
 ---
 # defaults file for haproxy
+  remote_install_path: /etc/haproxy
   people:
     - name: Mike
       fav_colour: Blue
