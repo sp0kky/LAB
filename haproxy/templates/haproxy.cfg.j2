@@ -42,7 +42,9 @@ frontend {{frontend.fe_name}}
 {% for backend in services_be %}
 backend {{backend.be_name}}_backend
         mode http
-        server {{backend.be_name}} {{backend.be_host}}:{{backend.be_port}} maxconn 250
+        {% for i in services_be.be_host %}
+        server {{backend.be_name}}_{{ loop.index }} {{i}}:{{backend.be_port}} maxconn 250
+        {% endfor %}
 {% endfor %}
       
 
