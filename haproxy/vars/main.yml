@@ -3,6 +3,6 @@
 remote_install_path: /etc/haproxy
 services:
   test1:
-    fe-name: fe-app1
+    fe_name: fe-app1
   test2:
-    fe-name: fe-app2
+    fe_name: fe-app2
