@@ -16,5 +16,7 @@ provisioner:
         ansible_host: 10.0.0.4
         ansible_user: azureuser
         ansible_connection: ssh
+    vars_files:
+      - vars/main.yml
 verifier:
   name: ansible
