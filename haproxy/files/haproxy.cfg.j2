@@ -34,12 +34,12 @@ defaults
         errorfile 504 /etc/haproxy/errors/504.http
 
 {% for frontend in services %}
-        frontend {{frontend.name}}
+        frontend {{frontend.fe-name}}
             bind {{frontend.vip}}:{{frontend.port}}
             mode http
-            default_backend {{frontend.name}}_backend
+            default_backend {{frontend.fe-name}}_backend
 
-        backend {{frontend.name}}_backend
+        backend {{frontend.fe-name}}_backend
             mode http
 {% for backend in frontend.backends %}
             server {{backend.name}} {{backend.host}}:{{backend.port}} maxconn 250
