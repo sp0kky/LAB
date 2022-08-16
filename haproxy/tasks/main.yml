@@ -7,6 +7,8 @@
   become: true
 
 - name: Add haproxy.cfg
+  debug:
+    var: remote_install_path
   ansible.builtin.template:
     src: haproxy.cfg.j2
     dest: '{{ remote_install_path }}/haproxy.cfg'
