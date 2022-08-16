@@ -9,10 +9,10 @@
 - name: debug variable
   ansible.builtin.debug:
     var: services
-#- name: Add haproxy.cfg
-#  ansible.builtin.template:
-#    src: haproxy.cfg.j2
-#    dest: '{{ remote_install_path }}/haproxy.cfg'
+- name: Add haproxy.cfg
+  ansible.builtin.template:
+    src: haproxy.cfg.j2
+    dest: '{{ remote_install_path }}/haproxy.cfg'
 
 #- name: Change default user
 #  ansible.builtin.replace:
