@@ -16,6 +16,8 @@
       be_port: 80
     - name: Yellow
       be_name: Yellow_be
-      be_host: Yellow_be
+      be_host: 
+        - Yellow_be1
+        - Yellow_be2
       be_port: 80
     
