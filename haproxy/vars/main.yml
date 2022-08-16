@@ -2,7 +2,6 @@
 # vars file for haproxy
 # remote_install_path: /etc/haproxy
 services:
-  test1:
-    fe_name: fe-app1
-  test2:
-    fe_name: fe-app2
+  fe_name: 
+    - fe-app1
+    - fe-app2
