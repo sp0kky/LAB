@@ -10,7 +10,6 @@
   ansible.builtin.debug:
     var: 
       - services_fe
-      - services_be
 - name: Add haproxy.cfg
   ansible.builtin.template:
     src: haproxy.cfg.j2
