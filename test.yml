@@ -22,4 +22,4 @@
         hiddensecret: "{{ kvSecret['secrets'][0]['secret'] }}"
     - name: Output key vault secret
       debug:
-        msg="{{ hiddensecret }}"
+        var: "{{ hiddensecret }}"
