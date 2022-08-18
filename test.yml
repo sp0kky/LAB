@@ -8,9 +8,7 @@
     - azure.azcollection
   vars:
     vault_name: LAB-MIRKO
-    secret_name:
-      - azuretestuser
-      - azusertest
+    secret_name: azuretestuser
   tasks:
     - name: Get Key Vault by name
       azure_rm_keyvault_info:
