@@ -11,20 +11,14 @@
     secret_name: azuretestuser
   tasks:
     - name: Get Key Vault by name
-      azure_rm_keyvault_info:
-        auth_source: env
-        resource_group: RG-LAB
-        name: LAB-MIRKO
-      register: keyvault
-    - name: Set key vault URI fact
-      set_fact: keyvaulturi="{{ keyvault | json_query('keyvaults[0].vault_uri')}}"
-#    - name: Get secret value
-#      azure_rm_keyvaultsecret_info:
-#        vault_uri: "{{ keyvaulturi }}"
-#        name: "{{ secret_name }}"
-#      register: kvSecret
-#    - name: set secret fact
-#      set_fact: secretValue="{{ kvSecret['secrets'][0]['secret'] }}"
+      azure.azcollection.azure_rm_keyvaultsecret_info:
+        auth_source: "{{default(lookup('env', 'AZURE_AUTH_SOURCE')) }}"
+        vault_uri: "https://{{ keyvaultenv.vault_name }}.vault.azure.net"
+        name: "{{ keyvaultenv.secret_name}}"
+        #resource_group: RG-LAB
+        #name: LAB-MIRKO
+      register: kvSecret
+
     - name: Output key vault secret
       debug:
-        msg="{{ keyvaulturi }}"
+        msg="{{ kvSecret }}"
