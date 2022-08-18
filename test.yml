@@ -15,8 +15,6 @@
         auth_source: env
         vault_uri: "https://{{ vault_name }}.vault.azure.net"
         name: "{{ secret_name }}"
-        #resource_group: RG-LAB
-        #name: LAB-MIRKO
       register: kvSecret
     - name: Get Secret
       ansible.builtin.set_fact:
