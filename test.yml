@@ -4,8 +4,6 @@
   hosts: localhost
   gather_facts: false
   connection: local
-  collections:
-    - azure.azcollection
   vars:
     vault_name: LAB-MIRKO
     secret_name: azuretestuser
