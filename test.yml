@@ -12,7 +12,7 @@
   tasks:
     - name: Get Key Vault by name
       azure.azcollection.azure_rm_keyvaultsecret_info:
-        auth_source: "{{ default(lookup('env', 'AZURE_AUTH_SOURCE')) }}"
+        auth_source: "{{ lookup('env', 'AZURE_AUTH_SOURCE') }}"
         vault_uri: "https://{{ keyvaultenv.vault_name }}.vault.azure.net"
         name: "{{ keyvaultenv.secret_name}}"
         #resource_group: RG-LAB
