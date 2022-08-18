@@ -18,7 +18,8 @@
         #resource_group: RG-LAB
         #name: LAB-MIRKO
       register: kvSecret
-
+    - name: Get Secret
+        hiddensecret: "{{ kvSecret['secrets'][0]['secret'] }}"
     - name: Output key vault secret
       debug:
-        msg="{{ kvSecret }}"
+        msg="{{ hiddensecret }}"
