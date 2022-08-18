@@ -18,8 +18,8 @@
         resource_group: RG-LAB
         name: LAB-MIRKO
       register: keyvault
-#    - name: Set key vault URI fact
-#      set_fact: keyvaulturi="{{ keyvault['keyvaults'][0]['vault_uri'] }}"
+    - name: Set key vault URI fact
+      set_fact: keyvaulturi="{{ keyvault['keyvaults'][0]['vault_uri'] }}"
 #    - name: Get secret value
 #      azure_rm_keyvaultsecret_info:
 #        vault_uri: "{{ keyvaulturi }}"
