@@ -19,7 +19,7 @@
         #name: LAB-MIRKO
       register: kvSecret
     - name: Get Secret
-      ansible.builtin.set_facts:
+      ansible.builtin.set_fact:
         hiddensecret: "{{ kvSecret['secrets'][0]['secret'] }}"
     - name: Output key vault secret
       debug:
