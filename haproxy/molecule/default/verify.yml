@@ -6,10 +6,10 @@
   gather_facts: false
   tasks:
   - name: package facts
-    package_facts:
+    ansible.builtin.package_facts:
       manager: auto
   - name: service facts
-    service_facts:
+    ansible.builtin.service_facts:
   - name: assert
     ansible.builtin.assert:
       that:

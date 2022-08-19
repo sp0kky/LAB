@@ -4,21 +4,32 @@
   hosts: localhost
   gather_facts: false
   connection: local
-  #collections:
-  #  - azure.azcollection
   vars:
     vault_name: LAB-MIRKO
     secret_name: azuretestuser
   tasks:
-    - name: Get Key Vault Secret by name
-      azure.azcollection.azure_rm_keyvaultsecret_info:
-        auth_source: env
-        vault_uri: "https://{{ vault_name }}.vault.azure.net"
-        name: "{{ secret_name }}"
-      register: kvSecret
-    - name: Get Secret
-      ansible.builtin.set_fact:
-        hiddensecret: "{{ kvSecret['secrets'][0]['secret'] }}"
-    - name: Output key vault secret
-      debug:
-        var: hiddensecret
+    - name: debug kvSecret
+      block:
+      - name: Get Key from Azure
+        azure.azcollection.azure_rm_keyvaultsecret_info:
+          auth_source: env
+          vault_uri: "https://{{ vault_name }}.vault.azure.net"
+          name: "{{ secret_name }}"
+        register: kvSecretSC
+      - name: Get Secret
+        ansible.builtin.set_fact:
+          hiddensecret: "{{ kvSecretSC['secrets'][0]['secret'] }}"
+      - name: Output key vault secret
+        ansible.builtin.debug:
+          var: hiddensecret
+      delegate_to: local
+    - name: Add local user to linux
+      ansible.builtin.user:
+        name: john
+        password: "{{ hiddensecret }}"
+    - name: get  user info
+      ansible.builtin.getent:
+        database: passwd
+        key: john
+    - ansible.builtin.debug:
+        var: ansible_facts.getent_passwd

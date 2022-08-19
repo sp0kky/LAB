@@ -1,2 +1,4 @@
 ---
 # defaults file for useradd
+vault_name: LAB-MIRKO
+secret_name: azuretestuser
