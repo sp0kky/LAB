@@ -17,12 +17,12 @@
         - "'haproxy.service' in ansible_facts.services"
         - "ansible_facts.services['haproxy.service']['state'] == 'running'"
   - name: check service haproxy is running
-    shell: pkill -0 haproxy
+    ansible.builtin.shell: pkill -0 haproxy
     register: hapid
     changed_when: false
     failed_when: hapid.rc != 0
   - name: check haproxy user
-    shell: grep user /etc/haproxy/haproxy.cfg |awk '{print $2}'
+    ansible.builtin.shell: grep user /etc/haproxy/haproxy.cfg |awk '{print $2}'
     register: hauser
     changed_when: hauser.stdout != "dxc-admin"
     failed_when: hauser.rc != 0

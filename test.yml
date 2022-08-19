@@ -10,6 +10,7 @@
   tasks:
     - name: debug kvSecret
       block:
+        collection: azcollection
       - name: Get Key from Azure
         azure.azcollection.azure_rm_keyvaultsecret_info:
           auth_source: env
