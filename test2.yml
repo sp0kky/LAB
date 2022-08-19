@@ -1,0 +1,23 @@
+# tasks file for useradd
+- name: Lookup secret from Azure Key Vault
+  hosts: localhost
+  gather_facts: false
+  connection: local
+  #collections:
+  #  - azure.azcollection
+  vars:
+    vault_name: LAB-MIRKO
+    secret_name: azuretestuser
+  tasks:
+    - name: Get Key Vault by named
+      azure.azcollection.azure_rm_keyvaultsecret_info:
+        auth_source: env
+        vault_uri: "https://{{ vault_name }}.vault.azure.net"
+        name: "{{ secret_name }}"
+      register: kvSecret
+    - name: Get Secret
+      ansible.builtin.set_fact:
+        hiddensecret: "{{ kvSecret['secrets'][0]['secret'] }}"
+    - name: Output key vault secret
+      debug:
+        var: hiddensecret
