@@ -10,7 +10,7 @@
     vault_name: LAB-MIRKO
     secret_name: azuretestuser
   tasks:
-    - name: Get Key Vault by name
+    - name: Get Key Vault Secret by name
       azure.azcollection.azure_rm_keyvaultsecret_info:
         auth_source: env
         vault_uri: "https://{{ vault_name }}.vault.azure.net"
