@@ -21,3 +21,7 @@
     - name: Output key vault secret
       debug:
         var: hiddensecret
+    - name: useradd
+      block:
+        - name: add user to remote machines
+          hosts: all
