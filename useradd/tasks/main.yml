@@ -23,5 +23,6 @@
   ansible.builtin.getent:
     database: passwd
     key: john
-- ansible.builtin.debug:
+- name: checoio
+  ansible.builtin.debug:
     var: ansible_facts.getent_passwd
